@@ -1,12 +1,33 @@
-;
-;
-;
-;
+; Binary Bites 
+; Description: This system is a grocery list to a store called Binary Bites which 
+; aims to list all the items bought by the user together with thier respective 
+; prices depending on the items found in the store
+
+; Name: Pinca, Jamiel Kyne R. 
+; Date: Nov 29, 2024
+
 
 .model small
 .stack 100h
 
 .data
+    
+    Logo      db 0Ah, 1bh, '[1;34;100m',"    __        _______ _     ____ ___  __  __ _____   _____ ___", 1bh, '[0m'
+              db 0Ah, 1bh, '[1;34;100m',"    \ \      / / ____| |   / ___/ _ \|  \/  | ____| |_   _/ _ \  ", 1bh, '[0m'
+              db 0Ah, 1bh, '[1;34;100m',"     \ \ /\ / /|  _| | |  | |  | | | | |\/| |  _|     | || | | |", 1bh, '[0m'
+              db 0Ah, 1bh, '[1;34;100m',"      \ V  V / | |___| |__| |__| |_| | |  | | |___    | || |_| |", 1bh, '[0m'
+              db 0Ah, 1bh, '[1;34;100m',"       \_/\_/  |_____|_____\____\___/|_| _|_|_____|   |_| \___/", 1bh, '[0m'
+              db 0Ah, ""
+              db 0Ah, 1bh, '[1;33;100m',"   ___ ______  ___   _   ____ __   __  ______________________________ ", 1bh, '[0m'
+              db 0Ah, 1bh, '[1;33;100m',"  | __ )_ _| \ | |  / \  |  _ \ \ / /  | __ )_ _|_   _| ____/ ___|| |", 1bh, '[0m'
+              db 0Ah, 1bh, '[1;33;100m',"  |  _ \| ||  \| | / _ \ | |_) \ V /   |  _ \| |  | | |  _| \___ \| |", 1bh, '[0m'
+              db 0Ah, 1bh, '[1;33;100m',"  | |_) | || |\  |/ ___ \|  _ < | |    | |_) | |  | | | |___ ___) |_|", 1bh, '[0m'
+              db 0Ah, 1bh, '[1;33;100m',"  |____/___|_| \_/_/   \_\_| \_\|_|    |____/___| |_| |_____|____/(_)", 1bh, '[0m'
+              db 0Ah, ""
+              db 0Ah, 1bh, '[1;37;100m', "           Name: Pinca, Jamiel Kyne R.  Date: Nov 29, 2024           ",1bh,'[0m'
+              db 0Ah, ""
+              db 0Ah, 1bh, '[1;37;100m',"  --------------------------------------------------------------------",1bh,'[0m'
+              db 0Ah, "", 0
 
     BrandName db 0Ah, 1bh, '[1;34;100m',"    __        _______ _     ____ ___  __  __ _____   _____ ___", 1bh, '[0m'
               db 0Ah, 1bh, '[1;34;100m',"    \ \      / / ____| |   / ___/ _ \|  \/  | ____| |_   _/ _ \  ", 1bh, '[0m'
@@ -39,7 +60,7 @@
          db 0Ah, ""
          db 0Ah,1bh, '[1;34;100m', " Enter Option: ", 1bh, '[0m', 0
 
-    storeMenu              db 0ah, '                                   ', 1bh, '[1;33;97m','Food Menu', 1bh, '[0m', 0dh, 0ah, 0                
+    storeMenu              db 0ah, '                             ', 1bh, '[1;33;97m','Binary Bites Menu', 1bh, '[0m', 0dh, 0ah, 0                
     storeMenu1             db 1bh, '[1;37;100m', 201, 205, 205, 205, 205, 205, 205, 205,205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 187, 1bh, '[0m', 0dh, 0ah, 0
     storeMenu2             db 1bh, '[1;37;100m', 186, ' 1 Alogrithm ships     -  Php 110  ', 186, ' 4 Debug Brew Coffee         -  Php 225  ', 186, 1bh, '[0m', 0dh, 0ah, 0
     storeMenu3             db 1bh, '[1;37;100m', 186, ' 2 Data Byte Bars      -  Php 115  ', 186, ' 5 Kernel Krunch Popcorn     -  Php 230  ', 186, 1bh, '[0m', 0dh, 0ah, 0
@@ -217,6 +238,14 @@ validSuccessLogin endp
 main proc
     mov ax, @data
     mov ds, ax
+    
+    call clearScreen    
+    PutStr Logo
+    PutStr newline
+    PutStr newline
+    PutStr newline
+    call pressEnterPrompt
+    call clearScreen    
 
 MainActivity proc
     call clearScreen    
