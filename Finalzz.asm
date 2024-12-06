@@ -4,7 +4,8 @@
 ; prices depending on the items found in the store
 
 ; Name: Pinca, Jamiel Kyne R. 
-; Date: Dec 6, 2024
+; Date Made: Nov 22, 2024
+; Date Submitted: Dec 6, 2024
 
 
 .model small
@@ -16,7 +17,7 @@
               db 0Ah, 1bh, '[1;34;100m',"    \ \      / / ____| |   / ___/ _ \|  \/  | ____| |_   _/ _ \  ", 1bh, '[0m'
               db 0Ah, 1bh, '[1;34;100m',"     \ \ /\ / /|  _| | |  | |  | | | | |\/| |  _|     | || | | |", 1bh, '[0m'
               db 0Ah, 1bh, '[1;34;100m',"      \ V  V / | |___| |__| |__| |_| | |  | | |___    | || |_| |", 1bh, '[0m'
-              db 0Ah, 1bh, '[1;34;100m',"       \_/\_/  |_____|_____\____\___/|_| _|_|_____|   |_| \___/", 1bh, '[0m'
+              db 0Ah, 1bh, '[1;34;100m',"       \_/\_/  |_____|_____\____\___/|_|  |_|_____|   |_| \___/", 1bh, '[0m'
               db 0Ah, ""
               db 0Ah, 1bh, '[1;33;100m',"   ___ ______  ___   _   ____ __   __  ______________________________ ", 1bh, '[0m'
               db 0Ah, 1bh, '[1;33;100m',"  | __ )_ _| \ | |  / \  |  _ \ \ / /  | __ )_ _|_   _| ____/ ___|| |", 1bh, '[0m'
@@ -73,12 +74,12 @@
     addFoodQuery        db ' ',1bh, '[1;5;34;97m','Add Item to Cart', 1bh, '[0m', '                         [p - Go to Previous Menu]', 0dh, 0ah
                         db ' Input code: ',0
     addedFood           db '                          Added [Food Code: ', 0
-    addFail             db '                                ', 1bh, '[1;5;33;41m', 'Invalid Input!', 1bh, '[0m', 0dh, 0ah, 0
+    addFail             db '                          ', 1bh, '[1;5;33;41m', 'Invalid Input!', 1bh, '[0m', 0dh, 0ah, 0
     addGoPrevious       db '                          ', 1bh, '[1;5;33;41m', '   Going back...   ', 1bh, '[0m', 0dh, 0ah, 0
 
     removeFoodQuery    db '',1bh, '[1;5;34;97m','Remove Item from Cart', 1bh, '[0m', '                                 [p - Previous Menu]', 0dh, 0ah
                            db 'Input Choice: ',0
-    removeFailMsg       db '                                ', 1bh, '[1;5;33;41m', 'Invalid Input!', 1bh, '[0m', 0dh, 0ah, 0
+    removeFailMsg       db '                                       ', 1bh, '[1;5;33;41m', 'Invalid Input!', 1bh, '[0m', 0dh, 0ah, 0
     removedFood         db '                                       Removed [Item Choice: ', 0
     removeZero          db '                                       ', 1bh, '[1;5;33;41m', 'Non-existent order', 1bh, '[0m', 0dh, 0ah, 0
     removeGoPrevious    db '                                       ', 1bh, '[1;5;33;41m', '   Going back...   ', 1bh, '[0m', 0dh, 0ah, 0
@@ -644,7 +645,7 @@ addFoodMenuCustomer1 proc
         jmp addResetMenu1
 
     addIncorrectFoodCode1:
-        PutStr addFailMsg
+        PutStr addFail
 
     addResetMenu1: 
         PutCh 0ah 
