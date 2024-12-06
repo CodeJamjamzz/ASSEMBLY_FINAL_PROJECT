@@ -1,10 +1,10 @@
-; Binary Bites 
+; System Name: Binary Bites 
 ; Description: This system is a grocery list to a store called Binary Bites which 
 ; aims to list all the items bought by the user together with thier respective 
 ; prices depending on the items found in the store
 
 ; Name: Pinca, Jamiel Kyne R. 
-; Date: Nov 29, 2024
+; Date: Dec 6, 2024
 
 
 .model small
@@ -83,6 +83,20 @@
     removeZero          db '                                       ', 1bh, '[1;5;33;41m', 'Non-existent order', 1bh, '[0m', 0dh, 0ah, 0
     removeGoPrevious    db '                                       ', 1bh, '[1;5;33;41m', '   Going back...   ', 1bh, '[0m', 0dh, 0ah, 0
 
+
+    EndMsg  db 13, 10, "     ", 1bh, '[1;33;44m', "  _____ _                 _                                   _  ", 1bh, '[0m' 
+            db 13, 10, "     ", 1bh, '[1;33;44m', " |_   _| |__   __ _ _ __ | | __  _   _  __ _ _   _ _   _ _ __| | ", 1bh, '[0m' 
+            db 13, 10, "     ", 1bh, '[1;33;44m', "   | | | '_ \ / _` | '_ \| |/ / | | | |/ _` | | | | | | | '__| | ", 1bh, '[0m' 
+            db 13, 10, "     ", 1bh, '[1;33;44m', "   | | | | | (_|_| | | | | < <  |_|_| (_|_| |_|_| |_|_| | |  | | ", 1bh, '[0m' 
+            db 13, 10, "     ", 1bh, '[1;33;44m', "   |_| |_| |_|\__,_|_| |_|_|\_\  \__, |\__,_|\__,_|\__,_|_|  (_) ", 1bh, '[0m' 
+            db 13, 10, "     ", 1bh, '[1;33;44m', "                                 |___/                           ", 1bh, '[0m', 0 
+
+        ; ______ _                 _                                   _  
+        ; |_   _| |__   __ _ _ __ | | __  _   _  __ _ _   _ _   _ _ __| | 
+        ;   | | | '_ \ / _` | '_ \| |/ / | | | |/ _` | | | | | | | '__| | 
+        ;   | | | | | | (_| | | | |   <  | |_| | (_| | |_| | |_| | |  |_| 
+        ;   |_| |_| |_|\__,_|_| |_|_|\_\  \__, |\__,_|\__,_|\__,_|_|  (_) 
+        ;                                 |___/                           
 
     DisplayItem1    db 0ah,1bh, '[1;33;100m', '   List of Items:                Price:     Quantity:',1bh, '[0m'
                     db 0ah, ''
@@ -180,6 +194,8 @@ pressEnterPrompt endp
 
 terminate proc
     call clearScreen
+    PutStr EndMsg
+    
     mov ah, 4ch
     int 21h
 terminate endp
